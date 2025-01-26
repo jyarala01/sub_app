@@ -137,20 +137,19 @@ class _MoreInfoViewState extends State<MoreInfoView> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 35),
-            FilledButton(
+            FilledButton.icon(
               onPressed: () => pickFile('HighSchoolCertificate'),
-              child: Text(highSchoolCertificatePath == null ? 'Upload High School Certificate' : 'Uploaded: ${highSchoolCertificatePath!.split('/').last}'),
+              label: Text(highSchoolCertificatePath == null ? 'Upload High School Certificate' : 'Uploaded: ${highSchoolCertificatePath!.split('/').last}'),
+              icon: Icon(Icons.document_scanner),
             ),
             SizedBox(height: 35),
-            FilledButton(
+            FilledButton.icon(
               onPressed: () => pickFile('BackgroundCheck'),
-              child: Text(backgroundCheckPath == null ? 'Upload Background Check' : 'Uploaded: ${backgroundCheckPath!.split('/').last}'),
+              label: Text(backgroundCheckPath == null ? 'Upload Background Check' : 'Uploaded: ${backgroundCheckPath!.split('/').last}'),
+              icon: Icon(Icons.document_scanner),
             ),
             SizedBox(height: 35),
-            FilledButton(
-              onPressed: () => pickFile('DriversLicense'),
-              child: Text(driversLicensePath == null ? 'Upload Driver\'s License' : 'Uploaded: ${driversLicensePath!.split('/').last}'),
-            ),
+            FilledButton.icon(onPressed: () => pickFile('DriversLicense'), label: Text(driversLicensePath == null ? 'Upload Driver\'s License' : 'Uploaded: ${driversLicensePath!.split('/').last}'), icon: Icon(Icons.document_scanner)),
             SizedBox(height: 80),
             FilledButton(
               onPressed: submitDocuments,
@@ -293,6 +292,7 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(title: Text('Profile')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -308,7 +308,7 @@ class ProfileView extends StatelessWidget {
             Text('Description:'),
             const SizedBox(
                 width: 1000.0,
-                height: 500.0,
+                height: 450.0,
                 child: TextField(
                   maxLines: null,
                   expands: true,
