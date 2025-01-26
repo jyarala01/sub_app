@@ -38,7 +38,7 @@ class WelcomeView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Welcome to QuikSub',
+                  'Welcome to QuickSub',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 32,
@@ -195,7 +195,7 @@ class _MoreInfoViewState extends State<MoreInfoView> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
               Text(
-              'Congratulations!\n\nYou have successfully made an account with QuikSub.\nBut we still need some additional information:',
+              'Congratulations!\n\nYou have successfully made an account with QuickSub.\nBut we still need some additional information:',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18,
