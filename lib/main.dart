@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+// main flutter function
 void main() {
   runApp(SubTeacherApp());
 }
 
 Map<String, WidgetBuilder> appRoutes = {
-  '/': (context) =>SignUpView(),
+  '/': (context) => SignUpView(),
   '''
 /more_info''': (context) => MoreInfoView(),
   '/thank_you': (context) => ThankYouView(),
@@ -14,13 +15,12 @@ Map<String, WidgetBuilder> appRoutes = {
   '/profile': (context) => ProfileView(),
 };
 
-
 class SubTeacherApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
       initialRoute: '/',
       routes: appRoutes,
     );
@@ -31,27 +31,34 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(title: Text('Create Account')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextField(decoration: InputDecoration(labelText: 'Full Name!')),
-            TextField(decoration: InputDecoration(labelText: 'Date of Birth')),
-            TextField(decoration: InputDecoration(labelText: 'Email Address')),
+            TextField(decoration: InputDecoration(labelText: 'Full Name', border: OutlineInputBorder())),
+            SizedBox(height: 4.0),
+            TextField(decoration: InputDecoration(labelText: 'Date of Birth', border: OutlineInputBorder())),
+            SizedBox(height: 4.0),
+            TextField(decoration: InputDecoration(labelText: 'Email Address', border: OutlineInputBorder())),
+            SizedBox(height: 4.0),
             TextField(
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
               obscureText: true,
             ),
+            SizedBox(height: 4.0),
             TextField(
-              decoration: InputDecoration(labelText: 'Confirm Password'),
+              decoration: InputDecoration(labelText: 'Confirm Password', border: OutlineInputBorder()),
               obscureText: true,
             ),
             SizedBox(height: 20),
-            ElevatedButton(
+            FilledButton.icon(
               onPressed: () => Navigator.pushNamed(context, '/more_info'),
-              child: Text('Create Account'),
+              label: Text('Create Account'),
+              // icons for filled buttons filledbutton.icon or .tonal (less emphasized)
+              icon: Icon(Icons.person),
             ),
             TextButton(
               onPressed: () => Navigator.pushNamed(context, '/login'),
@@ -68,6 +75,7 @@ class MoreInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(title: Text('Additional Information')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -79,11 +87,11 @@ class MoreInfoView extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
-            ElevatedButton(onPressed: () {}, child: Text('Upload Highschool Certificate')),
-            ElevatedButton(onPressed: () {}, child: Text('Upload Background Check')),
-            ElevatedButton(onPressed: () {}, child: Text('Upload Drivers License')),
+            FilledButton(onPressed: () {}, child: Text('Upload Highschool Certificate')),
+            FilledButton(onPressed: () {}, child: Text('Upload Background Check')),
+            FilledButton(onPressed: () {}, child: Text('Upload Drivers License')),
             SizedBox(height: 20),
-            ElevatedButton(
+            FilledButton(
               onPressed: () => Navigator.pushNamed(context, '/thank_you'),
               child: Text('Submit Documents'),
             ),
@@ -135,7 +143,7 @@ class LoginView extends StatelessWidget {
               obscureText: true,
             ),
             SizedBox(height: 20),
-            ElevatedButton(
+            FilledButton(
               onPressed: () => Navigator.pushNamed(context, '/school_list'),
               child: Text('Log In'),
             ),
@@ -154,19 +162,52 @@ class LoginView extends StatelessWidget {
   }
 }
 
+final schools = [
+  School(title: 'Hawthorne International Academy', subtitle: '6 positions available', distance: "1.1mi"),
+  School(title: 'Sherwood middle School', subtitle: '4 positions available', distance: "2.3mi"),
+  School(title: 'Pembroke Pines Charter High School', subtitle: '3 positions available', distance: "4.0mi"),
+  School(title: 'Cypress Bay High School', subtitle: '18 positions available', distance: "5.1mi"),
+  School(title: 'Franklin Academy', subtitle: '12 positions available', distance: "5.6mi"),
+  School(title: 'Sunset Elementary', subtitle: '6 positions available', distance: "6.9mi"),
+  School(title: 'Kent School for the Hard of Hearing', subtitle: '4 positions available', distance: "7.1mi"),
+  School(title: 'Pembroke Pines Charter High School', subtitle: '3 positions available', distance: "9.6mi"),
+  School(title: 'Cypress Bay High School', subtitle: '18 positions available', distance: "10.8mi"),
+  School(title: 'School of Science Elementary', subtitle: '2 positions available', distance: "11.2mi"),
+  School(title: 'American Heritage High School', subtitle: '1 position available', distance: "11.7mi"),
+  School(title: 'Summit Academy', subtitle: '5 position available', distance: "13.5mi")
+];
+
 class SchoolListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Schools')),
-      body: ListView(
-        children: [
-          ListTile(title: Text('Hawthorne International Academy'), subtitle: Text('7 positions available')),
-          ListTile(title: Text('Sherwood High School'), subtitle: Text('4 positions available')),
-          ListTile(title: Text('Pembroke Pines Charter High School'), subtitle: Text('3 positions available')),
-          ListTile(title: Text('Cypress Bay High School'), subtitle: Text('18 positions available')),
-          ListTile(title: Text('Franklin Academy'), subtitle: Text('12 positions available')),
-        ],
+      body: ListView.builder(
+        itemCount: schools.length,
+        itemBuilder: (context, index) {
+          final school = schools[index];
+          return ListTile(
+            title: Text(school.title),
+            subtitle: Row(
+              children: [
+                Text(school.subtitle),
+                Spacer(),
+                Text(school.distance),
+              ],
+            ),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SchoolPage(
+                    school: school,
+                  ),
+                ),
+              );
+            },
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -207,3 +248,33 @@ class ProfileView extends StatelessWidget {
   }
 }
 
+class School {
+  final String title;
+  final String subtitle;
+  final String distance;
+
+  School({
+    required this.title,
+    required this.subtitle,
+    required this.distance,
+  });
+}
+
+class SchoolPage extends StatelessWidget {
+  final School school;
+
+  const SchoolPage({
+    super.key,
+    required this.school,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Text(school.title),
+      ),
+    );
+  }
+}
