@@ -232,8 +232,8 @@ final schools = [
   School(title: 'Franklin Academy', subtitle: '12 positions available', distance: "5.6mi"),
   School(title: 'Sunset Elementary', subtitle: '6 positions available', distance: "6.9mi"),
   School(title: 'Kent School for the Hard of Hearing', subtitle: '4 positions available', distance: "7.1mi"),
-  School(title: 'Pembroke Pines Charter High School', subtitle: '3 positions available', distance: "9.6mi"),
-  School(title: 'Cypress Bay High School', subtitle: '18 positions available', distance: "10.8mi"),
+  School(title: 'Lincoln Academy', subtitle: '3 positions available', distance: "9.6mi"),
+  School(title: 'Horizon STEM Academy', subtitle: '18 positions available', distance: "10.8mi"),
   School(title: 'School of Science Elementary', subtitle: '2 positions available', distance: "11.2mi"),
   School(title: 'American Heritage High School', subtitle: '1 position available', distance: "11.7mi"),
   School(title: 'Summit Academy', subtitle: '5 position available', distance: "13.5mi")
@@ -311,8 +311,8 @@ class ProfileView extends StatelessWidget {
             SizedBox(height: 50.0),
             Text('Description:'),
             const SizedBox(
-                width: 1000.0,
-                height: 450.0,
+                width: double.infinity,
+                height: double.infinity,
                 child: TextField(
                   maxLines: null,
                   expands: true,
