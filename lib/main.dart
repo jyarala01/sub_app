@@ -472,7 +472,7 @@ class ProfileView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
           Text(
-                'Name: [name]',
+                'Name: Jake Everlake',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -481,7 +481,7 @@ class ProfileView extends StatelessWidget {
               ),
               SizedBox(height: 50.0),
               Text(
-                'Email Address: [email]',
+                'Email Address: jake@email.com',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -490,12 +490,24 @@ class ProfileView extends StatelessWidget {
               ),
               SizedBox(height: 50.0),
               Text(
-                'Phone Number: [phone]',
+                'Phone Number:',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.black87,
                 ),
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  fillColor: Colors.white,
+                  filled: true,
+                  hintText: 'Enter your phone number',
+                  hintStyle: TextStyle(color: Colors.grey),
+                ),
+                style: TextStyle(color: Colors.black),
               ),
               SizedBox(height: 50.0),
               Text(
