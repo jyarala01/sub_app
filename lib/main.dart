@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
 
 // main flutter function
 void main() {
@@ -71,7 +72,59 @@ class SignUpView extends StatelessWidget {
   }
 }
 
-class MoreInfoView extends StatelessWidget {
+
+class MoreInfoView extends StatefulWidget {
+  @override
+  _MoreInfoViewState createState() => _MoreInfoViewState();
+}
+
+class _MoreInfoViewState extends State<MoreInfoView> {
+  String? highSchoolCertificatePath;
+  String? backgroundCheckPath;
+  String? driversLicensePath;
+
+  Future<void> pickFile(String documentType) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null && result.files.single.path != null) {
+      setState(() {
+        if (documentType == 'HighSchoolCertificate') {
+          highSchoolCertificatePath = result.files.single.path;
+        } else if (documentType == 'BackgroundCheck') {
+          backgroundCheckPath = result.files.single.path;
+        } else if (documentType == 'DriversLicense') {
+          driversLicensePath = result.files.single.path;
+        }
+      });
+    } else {
+      // Handle case where user cancels the file picker
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('No file selected')),
+      );
+    }
+  }
+
+  void submitDocuments() {
+    if (highSchoolCertificatePath == null ||
+        backgroundCheckPath == null ||
+        driversLicensePath == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please upload all required documents.')),
+      );
+    } else {
+      // Implement your upload logic here
+      print('High School Certificate: $highSchoolCertificatePath');
+      print('Background Check: $backgroundCheckPath');
+      print('Driver\'s License: $driversLicensePath');
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Documents submitted successfully!')),
+      );
+
+      // Navigate to thank you page
+      Navigator.pushNamed(context, '/thank_you');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,12 +140,27 @@ class MoreInfoView extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
-            FilledButton(onPressed: () {}, child: Text('Upload Highschool Certificate')),
-            FilledButton(onPressed: () {}, child: Text('Upload Background Check')),
-            FilledButton(onPressed: () {}, child: Text('Upload Drivers License')),
+            FilledButton(
+              onPressed: () => pickFile('HighSchoolCertificate'),
+              child: Text(highSchoolCertificatePath == null
+                  ? 'Upload High School Certificate'
+                  : 'Uploaded: ${highSchoolCertificatePath!.split('/').last}'),
+            ),
+            FilledButton(
+              onPressed: () => pickFile('BackgroundCheck'),
+              child: Text(backgroundCheckPath == null
+                  ? 'Upload Background Check'
+                  : 'Uploaded: ${backgroundCheckPath!.split('/').last}'),
+            ),
+            FilledButton(
+              onPressed: () => pickFile('DriversLicense'),
+              child: Text(driversLicensePath == null
+                  ? 'Upload Driver\'s License'
+                  : 'Uploaded: ${driversLicensePath!.split('/').last}'),
+            ),
             SizedBox(height: 20),
             FilledButton(
-              onPressed: () => Navigator.pushNamed(context, '/thank_you'),
+              onPressed: submitDocuments,
               child: Text('Submit Documents'),
             ),
           ],
