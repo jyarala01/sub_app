@@ -310,9 +310,7 @@ class ProfileView extends StatelessWidget {
             Text('Phone Number: [phone]'),
             SizedBox(height: 50.0),
             Text('Description:'),
-            const SizedBox(
-                width: double.infinity,
-                height: double.infinity,
+            Expanded(
                 child: TextField(
                   maxLines: null,
                   expands: true,
