@@ -349,11 +349,51 @@ class SchoolPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Extracting the number of positions from the subtitle
+    final int numPositions = int.tryParse(
+          RegExp(r'\d+').firstMatch(school.subtitle)?.group(0) ?? '0',
+        ) ??
+        0;
+
     return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Text(school.title),
-        
+      appBar: AppBar(title: Text(school.title)),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Phone Number: (555) 123-4567', style: TextStyle(fontSize: 16)),
+            SizedBox(height: 8),
+            Text('Address: 123 Main St, Springfield, USA',
+                style: TextStyle(fontSize: 16)),
+            SizedBox(height: 16),
+            Text('Available Positions:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            Expanded(
+              child: ListView.builder(
+                itemCount: numPositions,
+                itemBuilder: (context, index) {
+                  return Card(
+                    margin: EdgeInsets.symmetric(vertical: 8.0),
+                    child: ListTile(
+                      leading: Icon(Icons.assignment),
+                      title: Text('Position ${index + 1}'),
+                      subtitle: Text('Details for position ${index + 1}'),
+                      trailing: Icon(Icons.chevron_right),
+                      onTap: () {
+                        // Placeholder for position-specific navigation or action
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Position ${index + 1} tapped')),
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
