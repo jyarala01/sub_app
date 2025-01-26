@@ -25,7 +25,7 @@ class WelcomeView extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green.shade300, Colors.green.shade700],
+            colors: [Colors.white, Colors.white],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -43,11 +43,11 @@ class WelcomeView extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: const Color.fromARGB(255, 27, 27, 26),
                     shadows: [
                       Shadow(
                         blurRadius: 4.0,
-                        color: Colors.black45,
+                        color: const Color.fromARGB(255, 142, 218, 145),
                         offset: Offset(2.0, 2.0),
                       ),
                     ],
