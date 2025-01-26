@@ -7,7 +7,8 @@ void main() {
 }
 
 Map<String, WidgetBuilder> appRoutes = {
-  '/': (context) => SignUpView(),
+  '/': (context) => WelcomeView(),
+  '/sign_up': (context) => SignUpView(),
   '''
 /more_info''': (context) => MoreInfoView(),
   '/thank_you': (context) => ThankYouView(),
@@ -15,6 +16,66 @@ Map<String, WidgetBuilder> appRoutes = {
   '/school_list': (context) => SchoolListView(),
   '/profile': (context) => ProfileView(),
 };
+
+class WelcomeView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.green.shade300, Colors.green.shade700],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'Welcome to QuikSub',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 4.0,
+                        color: Colors.black45,
+                        offset: Offset(2.0, 2.0),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 40),
+                Image.asset(
+                  'images/QuickSub_Logo.png',
+                  height: 150,
+                ),
+                SizedBox(height: 50),
+                FilledButton(
+                  onPressed: () => Navigator.pushNamed(context, '/sign_up'),
+                  child: Text('Create Account'),
+                ),
+                SizedBox(height: 20),
+                FilledButton(
+                  onPressed: () => Navigator.pushNamed(context, '/login'),
+                  child: Text('Existing Account'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class SubTeacherApp extends StatelessWidget {
   @override
@@ -39,7 +100,7 @@ class SignUpView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(child: Image.asset('images/QuickSub_Logo.png'), height: 100,),
+            SizedBox(child: Image.asset('images/QuickSub_Logo.png'), height: 200,),
             SizedBox(height: 8.0),
             TextField(decoration: InputDecoration(labelText: 'Full Name', border: OutlineInputBorder())),
             SizedBox(height: 4.0),
@@ -135,7 +196,7 @@ class _MoreInfoViewState extends State<MoreInfoView> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Congratulations!\n\nYou have successfully made an account with Ember.\nBut we still need some additional information:',
+              'Congratulations!\n\nYou have successfully made an account with QuikSub.\nBut we still need some additional information:',
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 35),
