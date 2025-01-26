@@ -239,8 +239,12 @@ class ProfileView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Name: [name]'),
+            SizedBox(height: 50.0),
             Text('Email Address: [email]'),
+            SizedBox(height: 50.0),
             Text('Phone Number: [phone]'),
+            SizedBox(height: 100.0),
+            Text('Description:'),
           ],
         ),
       ),
