@@ -25,7 +25,7 @@ class WelcomeView extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.white, Colors.white],
+            colors: [Colors.green.shade300, Colors.green.shade700],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -43,11 +43,11 @@ class WelcomeView extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 27, 27, 26),
+                    color: Colors.white,
                     shadows: [
                       Shadow(
                         blurRadius: 4.0,
-                        color: const Color.fromARGB(255, 142, 218, 145),
+                        color: Colors.black45,
                         offset: Offset(2.0, 2.0),
                       ),
                     ],
@@ -76,7 +76,6 @@ class WelcomeView extends StatelessWidget {
     );
   }
 }
-
 class SubTeacherApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -195,24 +194,76 @@ class _MoreInfoViewState extends State<MoreInfoView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
+              Text(
               'Congratulations!\n\nYou have successfully made an account with QuikSub.\nBut we still need some additional information:',
               textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+                height: 1.5, // Adds line spacing for better readability
+              ),
             ),
             SizedBox(height: 35),
             FilledButton.icon(
               onPressed: () => pickFile('HighSchoolCertificate'),
-              label: Text(highSchoolCertificatePath == null ? 'Upload High School Certificate' : 'Uploaded: ${highSchoolCertificatePath!.split('/').last}'),
-              icon: Icon(Icons.document_scanner),
+              label: Text(
+            highSchoolCertificatePath == null
+             ? 'Upload High School Certificate'
+            : 'Uploaded: ${highSchoolCertificatePath!.split('/').last}',
+            style: TextStyle(
+              color: Colors.white, // Customize text color if necessary
             ),
+            ),
+            icon: Icon(Icons.document_scanner, color: Colors.white),
+            style: FilledButton.styleFrom(
+              backgroundColor: Colors.green, // Set the fill color
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20), // Rounded corners
+              ),
+              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16), // Adjust padding
+             ),
+          ),
             SizedBox(height: 35),
             FilledButton.icon(
               onPressed: () => pickFile('BackgroundCheck'),
-              label: Text(backgroundCheckPath == null ? 'Upload Background Check' : 'Uploaded: ${backgroundCheckPath!.split('/').last}'),
-              icon: Icon(Icons.document_scanner),
+              label: Text(
+                backgroundCheckPath == null
+                    ? 'Upload Background Check'
+                    : 'Uploaded: ${backgroundCheckPath!.split('/').last}',
+                style: TextStyle(
+                  color: Colors.white, // Customize text color if necessary
+                ),
+              ),
+              icon: Icon(Icons.document_scanner, color: Colors.white),
+              style: FilledButton.styleFrom(
+                backgroundColor: Colors.green, // Set the fill color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20), // Rounded corners
+                ),
+                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16), // Adjust padding
+              ),
             ),
             SizedBox(height: 35),
-            FilledButton.icon(onPressed: () => pickFile('DriversLicense'), label: Text(driversLicensePath == null ? 'Upload Driver\'s License' : 'Uploaded: ${driversLicensePath!.split('/').last}'), icon: Icon(Icons.document_scanner)),
+            FilledButton.icon(
+              onPressed: () => pickFile('DriversLicense'),
+              label: Text(
+                driversLicensePath == null
+                    ? 'Upload Driver\'s License'
+                    : 'Uploaded: ${driversLicensePath!.split('/').last}',
+                style: TextStyle(
+                  color: Colors.white, // Customize text color if necessary
+                ),
+              ),
+              icon: Icon(Icons.document_scanner, color: Colors.white),
+              style: FilledButton.styleFrom(
+                backgroundColor: Colors.green, // Set the fill color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20), // Rounded corners
+                ),
+                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16), // Adjust padding
+              ),
+            ),
             SizedBox(height: 80),
             FilledButton(
               onPressed: submitDocuments,
@@ -230,25 +281,81 @@ class ThankYouView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Thank You!')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              '\n\nYour files have been submitted successfully.\nWe will review the documents and email you shortly.',
-              textAlign: TextAlign.center,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.green.shade100, Colors.green.shade300],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.check_circle_outline,
+                  color: Colors.green.shade700,
+                  size: 100,
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Thank You!',
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'Your information has been successfully submitted.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black87,
+                    height: 1.5,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'We will review the details and contact you soon regarding the creation of your account.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black87,
+                    height: 1.5,
+                  ),
+                ),
+                SizedBox(height: 30),
+                TextButton(
+                  onPressed: () {
+                    // Add action for Contact Us button
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Contact Us button tapped')),
+                    );
+                  },
+                  child: Text(
+                    'Contact Us',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.green.shade700,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            TextButton(
-              onPressed: () {},
-              child: Text('Contact Us'),
-            ),
-          ],
+          ),
         ),
       ),
     );
   }
 }
+
 
 class LoginView extends StatelessWidget {
   @override
