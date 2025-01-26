@@ -72,7 +72,6 @@ class SignUpView extends StatelessWidget {
   }
 }
 
-
 class MoreInfoView extends StatefulWidget {
   @override
   _MoreInfoViewState createState() => _MoreInfoViewState();
@@ -104,9 +103,7 @@ class _MoreInfoViewState extends State<MoreInfoView> {
   }
 
   void submitDocuments() {
-    if (highSchoolCertificatePath == null ||
-        backgroundCheckPath == null ||
-        driversLicensePath == null) {
+    if (highSchoolCertificatePath == null || backgroundCheckPath == null || driversLicensePath == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Please upload all required documents.')),
       );
@@ -139,26 +136,22 @@ class _MoreInfoViewState extends State<MoreInfoView> {
               'Congratulations!\n\nYou have successfully made an account with Ember.\nBut we still need some additional information:',
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 35),
             FilledButton(
               onPressed: () => pickFile('HighSchoolCertificate'),
-              child: Text(highSchoolCertificatePath == null
-                  ? 'Upload High School Certificate'
-                  : 'Uploaded: ${highSchoolCertificatePath!.split('/').last}'),
+              child: Text(highSchoolCertificatePath == null ? 'Upload High School Certificate' : 'Uploaded: ${highSchoolCertificatePath!.split('/').last}'),
             ),
+            SizedBox(height: 35),
             FilledButton(
               onPressed: () => pickFile('BackgroundCheck'),
-              child: Text(backgroundCheckPath == null
-                  ? 'Upload Background Check'
-                  : 'Uploaded: ${backgroundCheckPath!.split('/').last}'),
+              child: Text(backgroundCheckPath == null ? 'Upload Background Check' : 'Uploaded: ${backgroundCheckPath!.split('/').last}'),
             ),
+            SizedBox(height: 35),
             FilledButton(
               onPressed: () => pickFile('DriversLicense'),
-              child: Text(driversLicensePath == null
-                  ? 'Upload Driver\'s License'
-                  : 'Uploaded: ${driversLicensePath!.split('/').last}'),
+              child: Text(driversLicensePath == null ? 'Upload Driver\'s License' : 'Uploaded: ${driversLicensePath!.split('/').last}'),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 80),
             FilledButton(
               onPressed: submitDocuments,
               child: Text('Submit Documents'),
@@ -174,13 +167,13 @@ class ThankYouView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Thank You')),
+      appBar: AppBar(title: Text('Thank You!')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Thank you!\n\nYour files have been submitted successfully.\nWe will review the documents and email you shortly.',
+              '\n\nYour files have been submitted successfully.\nWe will review the documents and email you shortly.',
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
@@ -311,8 +304,18 @@ class ProfileView extends StatelessWidget {
             Text('Email Address: [email]'),
             SizedBox(height: 50.0),
             Text('Phone Number: [phone]'),
-            SizedBox(height: 100.0),
+            SizedBox(height: 50.0),
             Text('Description:'),
+            const SizedBox(
+                width: 1000.0,
+                height: 500.0,
+                child: TextField(
+                  maxLines: null,
+                  expands: true,
+                  textAlignVertical: TextAlignVertical.top,
+                  keyboardType: TextInputType.multiline,
+                  decoration: InputDecoration(border: OutlineInputBorder()),
+                )),
           ],
         ),
       ),
