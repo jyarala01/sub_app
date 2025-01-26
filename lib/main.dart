@@ -39,6 +39,8 @@ class SignUpView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            SizedBox(child: Image.asset('images/QuickSub_Logo.png'), height: 100,),
+            SizedBox(height: 8.0),
             TextField(decoration: InputDecoration(labelText: 'Full Name', border: OutlineInputBorder())),
             SizedBox(height: 4.0),
             TextField(decoration: InputDecoration(labelText: 'Date of Birth', border: OutlineInputBorder())),
@@ -246,26 +248,28 @@ class SchoolListView extends StatelessWidget {
         itemCount: schools.length,
         itemBuilder: (context, index) {
           final school = schools[index];
-          return ListTile(
-            title: Text(school.title),
-            subtitle: Row(
-              children: [
-                Text(school.subtitle),
-                Spacer(),
-                Text(school.distance),
-              ],
-            ),
-            trailing: Icon(Icons.chevron_right),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SchoolPage(
-                    school: school,
+          return Card(
+            child: ListTile(
+              title: Text(school.title),
+              subtitle: Row(
+                children: [
+                  Text(school.subtitle),
+                  Spacer(),
+                  Text(school.distance),
+                ],
+              ),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SchoolPage(
+                      school: school,
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           );
         },
       ),
@@ -349,6 +353,7 @@ class SchoolPage extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: Text(school.title),
+        
       ),
     );
   }
