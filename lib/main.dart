@@ -364,25 +364,64 @@ class ProfileView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Name: [name]'),
-            SizedBox(height: 50.0),
-            Text('Email Address: [email]'),
-            SizedBox(height: 50.0),
-            Text('Phone Number: [phone]'),
-            SizedBox(height: 50.0),
-            Text('Description:'),
-            Expanded(
+          Text(
+                'Name: [name]',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(height: 50.0),
+              Text(
+                'Email Address: [email]',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(height: 50.0),
+              Text(
+                'Phone Number: [phone]',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(height: 50.0),
+              Text(
+                'Description:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(height: 10),
+              Expanded(
                 child: TextField(
                   maxLines: null,
                   expands: true,
                   textAlignVertical: TextAlignVertical.top,
                   keyboardType: TextInputType.multiline,
-                  decoration: InputDecoration(border: OutlineInputBorder()),
-                )),
-          ],
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    hintText: 'Enter a brief description about yourself',
+                    hintStyle: TextStyle(color: Colors.grey),
+                  ),
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
   }
 }
 
